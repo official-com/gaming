@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEC Spartans | The Esports Club</title>
+    <meta name="description"
+        content="Elevating Passion, Powering Potential. Welcome to TEC Spartans, Where Gamers Become Trailblazers! Join the nationwide student esports ambassador program.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            light: '#141414',
+                            accent: '#FF003C', // Spartan Red
+                            accentHover: '#cc0030',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Oswald', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: theme('colors.brand.dark');
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF003C;
+        }
+
+        .clip-polygon {
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+        }
+
+        .clip-polygon-card {
+            clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+        }
+
+        /* Sticky Header Transition */
+        #main-header {
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        #main-header.scrolled {
+            background-color: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .floating-cta {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translateY(100px);
+            opacity: 0;
+        }
+
+        .floating-cta.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(50%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 0, 60, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        /* Animated Number */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+
+<body class="font-body antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- 1. HEADER / NAVIGATION -->
+    <header id="main-header" class="fixed top-0 w-full z-50 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-heading text-3xl font-bold tracking-wider">TEC <span
+                    class="text-brand-accent">SPARTANS</span></a>
+
+            <nav class="hidden md:flex items-center gap-8 font-heading text-lg tracking-wide">
+                <a href="#about" class="hover:text-brand-accent transition-colors">Who We Are</a>
+                <a href="#opportunities" class="hover:text-brand-accent transition-colors">Opportunities</a>
+                <a href="#action" class="hover:text-brand-accent transition-colors">In Action</a>
+                <a href="#app" class="hover:text-brand-accent transition-colors">App</a>
+                <a href="#faq" class="hover:text-brand-accent transition-colors">FAQ</a>
+                <a href="https://theesports.club" target="_blank"
+                    class="text-gray-400 hover:text-white transition-colors"><i
+                        class="fa-solid fa-arrow-up-right-from-square text-sm mr-1"></i> Main Site</a>
+            </nav>
+
+            <a href="#join"
+                class="hidden md:inline-flex bg-brand-accent hover:bg-brand-accentHover text-white px-8 py-2 font-heading text-lg tracking-wider uppercase clip-polygon transition-all duration-300 transform hover:-translate-y-1">
+                Join Now
+            </a>
+
+            <button id="menu-btn" class="md:hidden text-2xl focus:outline-none z-50 relative">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-brand-dark z-40 flex flex-col justify-center items-center gap-8 font-heading text-2xl">
+        <a href="#about" class="mobile-link hover:text-brand-accent">Who We Are</a>
+        <a href="#opportunities" class="mobile-link hover:text-brand-accent">Opportunities</a>
+        <a href="#action" class="mobile-link hover:text-brand-accent">In Action</a>
+        <a href="#app" class="mobile-link hover:text-brand-accent">App</a>
+        <a href="#faq" class="mobile-link hover:text-brand-accent">FAQ</a>
+        <a href="#join" class="mobile-link bg-brand-accent px-8 py-3 clip-polygon mt-4">Join TEC Spartans Now</a>
+    </div>
+
+    <!-- 2. HERO / BANNER SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <video src="vidssave.com Esports blurs video gaming and pro-sports 720P.mp4" autoplay loop muted playsinline
+                class="w-full h-full object-cover opacity-30"></video>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/80 to-brand-dark"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <div class="gsap-hero opacity-0 translate-y-10">
+                <span
+                    class="text-brand-accent font-heading tracking-[0.2em] uppercase text-sm md:text-lg mb-4 block">Welcome
+                    to TEC Spartans</span>
+                <h1 class="font-heading text-5xl md:text-7xl lg:text-9xl font-bold uppercase leading-none mb-6">
+                    Elevating <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Passion,</span><br>
+                    Powering <span class="text-brand-accent">Potential</span>
+                </h1>
+                <p class="text-gray-300 text-lg md:text-2xl max-w-3xl mx-auto mb-10 font-light">
+                    Where Gamers Become Trailblazers! Join the ultimate student-focused esports and gaming ambassador
+                    community in India.
+                </p>
+                <a href="#join"
+                    class="inline-flex bg-brand-accent hover:bg-brand-accentHover text-white px-10 py-4 font-heading text-xl tracking-wider uppercase clip-polygon transition-all duration-300 transform hover:scale-105 shadow-[0_0_30px_rgba(255,0,60,0.4)]">
+                    <i class="fa-solid fa-bolt mr-2"></i> Join TEC Spartans Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. WHO WE ARE -->
+    <section id="about" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="gsap-fade-right">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase mb-6"><span
+                        class="text-brand-accent">Who</span> We Are</h2>
+                <div class="w-20 h-1 bg-brand-accent mb-8"></div>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                    The TEC Spartans program is an exclusive, student-focused esports and gaming ambassador community.
+                    We empower students passionate about gaming to become campus leaders and industry trailblazers.
+                </p>
+                <ul class="space-y-4 text-gray-300">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-crosshairs text-brand-accent mt-1"></i>
+                        <span><strong>Organize Events:</strong> Lead and execute gaming events on your campus.</span>
+                    </li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-crosshairs text-brand-accent mt-1"></i>
+                        <span><strong>Real Campaigns:</strong> Participate in and drive real campaigns for top industry
+                            brands.</span>
+                    </li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-crosshairs text-brand-accent mt-1"></i>
+                        <span><strong>Build Community:</strong> Help cultivate and grow the gaming culture among your
+                            peers.</span>
+                    </li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-crosshairs text-brand-accent mt-1"></i>
+                        <span><strong>Gain Experience:</strong> Develop practical skills in event management, content
+                            creation, and networking.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="gsap-fade-left relative">
+                <div class="absolute inset-0 bg-brand-accent blur-[100px] opacity-20 rounded-full"></div>
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop"
+                    alt="Gamers collaborating"
+                    class="relative z-10 w-full clip-polygon-card border border-white/10 shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CREDIBILITY / STATISTICS SECTION -->
+    <section class="py-20 bg-brand-light relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase">Credibility <span
+                        class="text-brand-accent">That Counts</span></h2>
+                <p class="text-gray-400 mt-4">Connecting gamers, brands, and universities across the nation.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8" id="stats-container">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SPARTANS OPPORTUNITIES -->
+    <section id="opportunities" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase mb-16 text-center gsap-fade-up">Spartans
+                <span class="text-brand-accent">Opportunities</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="opportunities-container">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CRITERIA TO JOIN SPARTANS -->
+    <section class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-12 items-start">
+                <div class="lg:col-span-1 sticky top-24 gsap-fade-right">
+                    <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase leading-tight mb-6">Criteria to
+                        <br><span class="text-brand-accent">Join Spartans</span>
+                    </h2>
+                    <p class="text-gray-400">Do you have what it takes to join the elite ranks? Review our core
+                        requirements.</p>
+                </div>
+                <div class="lg:col-span-2 flex flex-col gap-8" id="criteria-container">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. TEC SPARTANS IN ACTION -->
+    <section id="action" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase mb-16 gsap-fade-up">TEC Spartans <span
+                    class="text-brand-accent">In Action</span></h2>
+
+            <div class="grid md:grid-cols-2 gap-8" id="campaigns-container">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. INSIDE THE SPARTANS APP & 9. APP DOWNLOAD CTA -->
+    <section id="app" class="py-24 bg-brand-light relative overflow-hidden">
+        <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/10 blur-[120px] rounded-full pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="gsap-fade-right">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase mb-8">Inside the <span
+                        class="text-brand-accent">Spartans App</span></h2>
+
+                <div class="space-y-8 mb-12" id="app-features-container">
+                    <!-- Injected via JS -->
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#"
+                        class="flex items-center gap-4 bg-black border border-white/20 hover:border-brand-accent rounded-xl px-6 py-3 transition-colors">
+                        <i class="fa-brands fa-apple text-3xl"></i>
+                        <div class="text-left">
+                            <div class="text-xs text-gray-400">Download on the</div>
+                            <div class="font-semibold text-lg leading-tight">App Store</div>
+                        </div>
+                    </a>
+                    <a href="#"
+                        class="flex items-center gap-4 bg-black border border-white/20 hover:border-brand-accent rounded-xl px-6 py-3 transition-colors">
+                        <i class="fa-brands fa-google-play text-3xl"></i>
+                        <div class="text-left">
+                            <div class="text-xs text-gray-400">GET IT ON</div>
+                            <div class="font-semibold text-lg leading-tight">Google Play</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="gsap-fade-left flex justify-center lg:justify-end">
+                <div
+                    class="relative w-72 h-[600px] bg-black border-[8px] border-gray-800 rounded-[3rem] shadow-2xl overflow-hidden shadow-brand-accent/20">
+                    <div class="absolute top-0 inset-x-0 h-6 bg-gray-800 rounded-b-xl w-40 mx-auto z-20"></div>
+                    <!-- Notch -->
+                    <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=800&auto=format&fit=crop"
+                        alt="App Interface Mockup" class="w-full h-full object-cover opacity-80">
+
+                    <!-- Fake UI Elements overlay -->
+                    <div class="absolute inset-0 z-10 p-4 pt-12 flex flex-col gap-4">
+                        <div
+                            class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/10 transform translate-x-4">
+                            <div class="font-heading text-xl text-brand-accent mb-1">New Campaign</div>
+                            <div class="text-sm">Amazon Gaming Fest - Back to College</div>
+                        </div>
+                        <div
+                            class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/10 transform -translate-x-4">
+                            <div class="font-heading text-xl text-green-400 mb-1">Task Accomplished</div>
+                            <div class="text-sm">+500 Spartan Points Earned!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. IMAGE GALLERY -->
+    <section class="py-2 bg-brand-dark">
+        <!-- Grid injected via JS -->
+        <div class="gallery-grid" id="gallery-container"></div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 items-center justify-center">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-brand-accent text-3xl"><i
+                class="fa-solid fa-xmark"></i></button>
+        <button id="lightbox-prev"
+            class="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-brand-accent text-4xl"><i
+                class="fa-solid fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Gallery Preview" class="max-h-[85vh] max-w-[90vw] object-contain shadow-2xl">
+        <button id="lightbox-next"
+            class="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-brand-accent text-4xl"><i
+                class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- 11. TESTIMONIALS -->
+    <section class="py-24 bg-brand-light border-y border-white/5 overflow-hidden relative">
+        <!-- 2026 Watermark Background -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 select-none overflow-hidden">
+            <span class="font-heading font-black text-transparent text-[30rem] md:text-[40rem] leading-none transform scale-150" style="-webkit-text-stroke: 2px rgba(255, 255, 255, 0.05);">2026</span>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold uppercase mb-16 text-center gsap-fade-up">Voices From
+                <span class="text-brand-accent">The Frontlines</span>
+            </h2>
+
+            <div class="swiper testimonial-swiper pb-16 gsap-fade-up">
+                <div class="swiper-wrapper" id="testimonials-container">
+                    <!-- Injected via JS -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next !text-brand-accent"></div>
+                <div class="swiper-button-prev !text-brand-accent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11.5 COMING TO A CITY NEAR YOU - AUTO SCROLL SLIDESHOW -->
+    <section class="py-20 bg-brand-dark overflow-hidden relative border-y border-white/5">
+        <!-- 2025 Watermark Background -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 select-none overflow-hidden">
+            <span class="font-heading font-black text-transparent text-[30rem] md:text-[40rem] leading-none" style="-webkit-text-stroke: 2px rgba(255, 255, 255, 0.03);">2025</span>
+        </div>
+
+        <div class="relative z-10">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold uppercase text-center mb-16 gsap-fade-up">
+                Coming to a <span class="text-brand-accent">City Near You</span>
+            </h2>
+
+            <!-- Marquee Track -->
+            <div class="cities-marquee-wrapper relative overflow-hidden">
+                <!-- Fade edges -->
+                <div class="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
+                <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
+
+                <div class="cities-marquee-track flex gap-8 w-max">
+                    <!-- First set -->
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1622360786836-a4b3eb9d6fd3?w=400&q=80" alt="Delhi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Delhi</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Mumbai" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Mumbai</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1573033415483-2e3e84a50a8b?w=400&q=80" alt="Bangalore" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Bangalore</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&q=80" alt="Kolkata" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Kolkata</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80" alt="Chennai" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Chennai</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=400&q=80" alt="Hyderabad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Hyderabad</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80" alt="Pune" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Pune</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1595658658481-d53d3f999875?w=400&q=80" alt="Ahmedabad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Ahmedabad</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80" alt="Chandigarh" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Chandigarh</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?w=400&q=80" alt="Jaipur" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Jaipur</span>
+                    </div>
+
+                    <!-- Duplicated set for seamless loop -->
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1622360786836-a4b3eb9d6fd3?w=400&q=80" alt="Delhi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Delhi</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Mumbai" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Mumbai</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1573033415483-2e3e84a50a8b?w=400&q=80" alt="Bangalore" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Bangalore</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&q=80" alt="Kolkata" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Kolkata</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80" alt="Chennai" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Chennai</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=400&q=80" alt="Hyderabad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Hyderabad</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80" alt="Pune" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Pune</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1595658658481-d53d3f999875?w=400&q=80" alt="Ahmedabad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Ahmedabad</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80" alt="Chandigarh" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Chandigarh</span>
+                    </div>
+                    <div class="city-card flex flex-col items-center gap-3 shrink-0">
+                        <div class="w-40 h-32 overflow-hidden rounded-xl border-2 border-white/10 hover:border-brand-accent transition-all duration-300 group">
+                            <img src="https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?w=400&q=80" alt="Jaipur" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <span class="font-heading text-lg font-semibold uppercase tracking-wider text-white">Jaipur</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .cities-marquee-track {
+            animation: marquee-scroll 28s linear infinite;
+        }
+        .cities-marquee-wrapper:hover .cities-marquee-track {
+            animation-play-state: paused;
+        }
+        .city-card {
+            transition: transform 0.3s ease;
+        }
+        .city-card:hover {
+            transform: translateY(-8px);
+        }
+    </style>
+
+    <!-- 12. FINAL CTA -->
+    <section id="join" class="relative py-32 bg-brand-dark text-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2000&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-20" alt="Join Background">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 gsap-fade-up">
+            <h2 class="font-heading text-5xl md:text-7xl font-bold uppercase mb-6">Your Journey <span
+                    class="text-brand-accent">Starts Here</span></h2>
+            <p class="text-xl text-gray-300 mb-10">Step up, connect with top brands, organize epic events, and leave
+                your mark on the esports ecosystem.</p>
+
+            <button
+                class="bg-brand-accent hover:bg-brand-accentHover text-white px-12 py-5 font-heading text-2xl tracking-wider uppercase clip-polygon transition-all duration-300 transform hover:scale-105 shadow-[0_0_40px_rgba(255,0,60,0.6)] mb-8">
+                Become a Spartan Today
+            </button>
+
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="#" class="text-sm text-gray-400 hover:text-white underline"><i
+                        class="fa-brands fa-apple mr-1"></i> App Store</a>
+                <span class="text-gray-600">|</span>
+                <a href="#" class="text-sm text-gray-400 hover:text-white underline"><i
+                        class="fa-brands fa-google-play mr-1"></i> Google Play</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. FOOTER BRANDING -->
+    <footer class="bg-black pt-20 pb-10 border-t-4 border-brand-accent">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding -->
+                <div class="lg:col-span-1">
+                    <a href="#" class="font-heading text-4xl font-bold tracking-wider block mb-2">TEC <span
+                            class="text-brand-accent">SPARTANS</span></a>
+                    <p class="text-brand-accent font-heading tracking-widest uppercase text-sm mb-6">A New Generation
+                        Gaming Ambassadors</p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent transition-colors"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent transition-colors"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent transition-colors"><i
+                                class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-heading text-xl uppercase mb-6 border-b border-white/10 pb-2">Contact Us</h4>
+                    <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                        <strong>Brainware University</strong><br>
+                        398, Ramkrishnapur Road,<br>
+                        Barasat, Near Jagadighata Market,<br>
+                        Kolkata, West Bengal – 700125, India 🇮🇳
+                    </p>
+                    <a href="mailto:admin@theesports.club"
+                        class="block text-gray-400 hover:text-brand-accent text-sm mb-2"><i
+                            class="fa-solid fa-envelope mr-2"></i> admin@theesports.club</a>
+                    <a href="mailto:job@theesports.club" class="block text-gray-400 hover:text-brand-accent text-sm"><i
+                            class="fa-solid fa-envelope mr-2"></i> job@theesports.club</a>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="font-heading text-xl uppercase mb-6 border-b border-white/10 pb-2">Navigation</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#about" class="hover:text-white transition-colors">Who We Are</a></li>
+                        <li><a href="#opportunities" class="hover:text-white transition-colors">Opportunities</a></li>
+                        <li><a href="#join" class="hover:text-white transition-colors">Join TEC Spartans</a></li>
+                        <li><a href="https://theesports.club" target="_blank"
+                                class="hover:text-white transition-colors">The Esports Club <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="font-heading text-xl uppercase mb-6 border-b border-white/10 pb-2">Support</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a id="faq" href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center pt-8 border-t border-white/10 text-gray-500 text-sm">
+                <p>&copy; 2025 Basik Marketing Private Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 14. FLOATING / STICKY CTA -->
+    <a href="#join" id="floating-cta"
+        class="floating-cta fixed bottom-6 right-6 z-40 bg-brand-accent text-white px-6 py-4 font-heading text-xl uppercase clip-polygon shadow-2xl hover:bg-white hover:text-brand-accent transition-colors flex items-center gap-3">
+        <i class="fa-solid fa-fire"></i> <span class="hidden sm:inline">Join TEC Spartans Now</span><span
+            class="sm:hidden">Join Now</span>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // DATA ARRAYS (Injecting content to keep HTML clean)
+
+        // Stats
+        const stats = [
+            { num: 2023, label: 'Founded In', suffix: '', desc: 'Connecting gamers, brands and universities.' },
+            { num: 1000, label: 'Spartans Nationwide', suffix: '+', desc: 'Campus leaders in gaming and esports.' },
+            { num: 574, label: 'Colleges Onboard', suffix: '', desc: 'Institutions connected across India.' },
+            { num: 407, label: 'Campaigns', suffix: '+', desc: 'Student-led gaming initiatives.' },
+            { num: 856, label: 'Active Monthly Spartans', suffix: '', desc: 'Members participating in activities.' },
+            { num: 40, label: 'Cities Across India', suffix: '', desc: 'Nationwide community presence.' }
+        ];
+
+        // Opportunities
+        const opportunities = [
+            { img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&q=80', title: 'Work with TEC Team', desc: 'Collaborate directly with the organizing ecosystem.' },
+            { img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80', title: 'Represent Top Brands', desc: 'Participate in real gaming/technology campaigns.' },
+            { img: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=500&q=80', title: 'Lead Local Events', desc: 'Organize gaming and tech events in your city.' },
+            { img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80', title: 'Grow Your Community', desc: 'Connect gamers on your campus and beyond.' }
+        ];
+
+        // Criteria
+        const criteria = [
+            { no: '01', title: 'Academic Enrollment', desc: 'Must currently be enrolled in an undergraduate or postgraduate course. Student + gamer is the central requirement.' },
+            { no: '02', title: 'Passion for Gaming', desc: 'Strong interest in gaming/esports. Ability and motivation to connect gamers, organize activities and help the community grow.' },
+            { no: '03', title: 'Creativity & Leadership', desc: 'Bring ideas to the community. Take initiative. Organize gaming events and encourage responsibility.' }
+        ];
+
+        // Campaigns
+        const campaigns = [
+            { brand: 'Amazon Gaming Fest', title: 'Back to College', desc: 'Intel laptop demonstrations and student-focused activities across multiple colleges and cities.' },
+            { brand: 'Monster Energy', title: 'TEC LAN Party', desc: 'High-energy BGMI LAN parties across multiple Indian cities.' },
+            { brand: 'Alienware', title: 'Gaming Saturdays', desc: 'Weekly store takeovers, esports tournaments, and meet-and-greet experiences led by Spartans.' },
+            { brand: 'Intel x Lenovo', title: 'Gamer Days 2024', desc: 'Campus qualifiers, Valorant competition, and a grand LAN finale with a ₹2 lakh prize pool.' }
+        ];
+
+        // App Features
+        const appFeatures = [
+            { icon: 'fa-compass', title: 'Discover Campaigns', desc: 'Easily discover new campaigns and brand opportunities.' },
+            { icon: 'fa-check-circle', title: 'Task Accomplished', desc: 'Track and complete assigned activities or tasks.' },
+            { icon: 'fa-gift', title: 'Reward Awaits', desc: 'Completed activities lead to exciting rewards and perks.' },
+            { icon: 'fa-user-plus', title: 'Apply for Roles', desc: 'Discover roles, apply, and get selected for elite opportunities.' },
+            { icon: 'fa-comments', title: 'Talk to Peer Spartans', desc: 'Community communication with other Spartans nationwide.' }
+        ];
+
+        // Gallery Images (17 items)
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&q=80",
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&q=80",
+            "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&q=80",
+            "https://images.unsplash.com/photo-1493711662062-fa541abbe517?w=400&q=80",
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80",
+            "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&q=80",
+            "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=400&q=80",
+            "https://images.unsplash.com/photo-1556656736-40277bd23049?w=400&q=80",
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&q=80", // repeated for volume
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&q=80",
+            "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&q=80",
+            "https://images.unsplash.com/photo-1493711662062-fa541abbe517?w=400&q=80",
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80",
+            "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&q=80",
+            "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=400&q=80",
+            "https://images.unsplash.com/photo-1556656736-40277bd23049?w=400&q=80",
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&q=80"
+        ];
+
+        // Testimonials
+        const testimonials = [
+            { name: 'Mehak V.', uni: 'SRM Institute', quote: 'Joined for fun and eventually helped run a major gaming fest at college; gained valuable experience and networking.' },
+            { name: 'Ayush S.', uni: 'VIT Vellore', quote: 'Received exposure to brands such as Intel and Alienware and had an excellent experience hosting a gaming event.' },
+            { name: 'Rohan D.', uni: 'Christ University', quote: 'Got practical exposure to the gaming industry, worked with campaigns involving brands such as Amazon and Lenovo.' }
+        ];
+
+        // RENDERING LOGIC
+
+        // Render Stats
+        const statsHtml = stats.map(s => `
+            <div class="bg-brand-dark border border-white/10 p-6 text-center clip-polygon-card transform transition-transform hover:-translate-y-2">
+                <div class="text-4xl md:text-5xl font-heading text-brand-accent font-bold mb-2">
+                    <span class="stat-number" data-val="${s.num}">0</span>${s.suffix}
+                </div>
+                <h3 class="font-heading text-xl uppercase mb-2">${s.label}</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">${s.desc}</p>
+            </div>
+        `).join('');
+        document.getElementById('stats-container').innerHTML = statsHtml;
+
+        // Render Opportunities
+        const oppsHtml = opportunities.map(o => `
+            <div class="group relative bg-brand-light border border-white/5 overflow-hidden clip-polygon-card cursor-pointer">
+                <div class="h-48 overflow-hidden">
+                    <img src="${o.img}" alt="${o.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-heading text-2xl uppercase mb-3 text-brand-accent group-hover:text-white transition-colors">${o.title}</h3>
+                    <p class="text-gray-400 text-sm">${o.desc}</p>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('opportunities-container').innerHTML = oppsHtml;
+
+        // Render Criteria
+        const criteriaHtml = criteria.map(c => `
+            <div class="flex gap-6 bg-brand-dark p-8 border border-white/5 clip-polygon-card hover:border-brand-accent/50 transition-colors">
+                <div class="font-heading text-6xl font-bold text-brand-accent/20 select-none">${c.no}</div>
+                <div>
+                    <h3 class="font-heading text-3xl uppercase mb-3 text-white">${c.title}</h3>
+                    <p class="text-gray-400">${c.desc}</p>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('criteria-container').innerHTML = criteriaHtml;
+
+        // Render Campaigns
+        const campaignsHtml = campaigns.map(c => `
+            <div class="relative overflow-hidden group border border-white/10 bg-brand-light">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10"></div>
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop" class="w-full h-80 object-cover opacity-50 group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute bottom-0 left-0 w-full p-8 z-20">
+                    <span class="bg-brand-accent text-white px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 inline-block">${c.brand}</span>
+                    <h3 class="font-heading text-3xl font-bold uppercase mb-3">${c.title}</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">${c.desc}</p>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('campaigns-container').innerHTML = campaignsHtml;
+
+        // Render App Features
+        const featuresHtml = appFeatures.map(f => `
+            <div class="flex gap-5 group">
+                <div class="w-12 h-12 rounded-full bg-brand-dark border border-white/10 flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-colors shrink-0">
+                    <i class="fa-solid ${f.icon} text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading text-2xl uppercase mb-1">${f.title}</h3>
+                    <p class="text-gray-400 text-sm">${f.desc}</p>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('app-features-container').innerHTML = featuresHtml;
+
+        // Render Gallery
+        const galleryHtml = galleryImages.map((img, i) => `
+            <div class="gallery-item" data-index="${i}">
+                <img src="${img}" loading="lazy" alt="Gallery Image ${i + 1}">
+                <div class="gallery-overlay"><i class="fa-solid fa-expand"></i></div>
+            </div>
+        `).join('');
+        document.getElementById('gallery-container').innerHTML = galleryHtml;
+
+        // Render Testimonials
+        const testimonialsHtml = testimonials.map(t => `
+            <div class="swiper-slide">
+                <div class="bg-brand-dark p-10 border border-white/10 relative clip-polygon-card text-center max-w-3xl mx-auto">
+                    <i class="fa-solid fa-quote-left text-5xl text-brand-accent/20 absolute top-6 left-6"></i>
+                    <p class="text-xl md:text-2xl text-gray-300 italic mb-8 relative z-10 leading-relaxed">"${t.quote}"</p>
+                    <div class="inline-block bg-brand-accent/10 px-6 py-2 rounded-full border border-brand-accent/20">
+                        <h4 class="font-heading text-2xl uppercase text-white">${t.name}</h4>
+                        <span class="text-brand-accent text-sm font-semibold tracking-wider">${t.uni}</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('testimonials-container').innerHTML = testimonialsHtml;
+
+
+        // INTERACTIONS & ANIMATIONS
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuBtn.querySelector('i').classList.remove('fa-xmark');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Sticky Header & Floating CTA
+        const header = document.getElementById('main-header');
+        const floatingCta = document.getElementById('floating-cta');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+
+            if (window.scrollY > 600) floatingCta.classList.add('visible');
+            else floatingCta.classList.remove('visible');
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const items = document.querySelectorAll('.gallery-item');
+        let currentIndex = 0;
+
+        function showLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = galleryImages[currentIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => showLightbox(index));
+        });
+
+        document.getElementById('lightbox-close').addEventListener('click', hideLightbox);
+        document.getElementById('lightbox-prev').addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryImages.length - 1;
+            lightboxImg.src = galleryImages[currentIndex];
+        });
+        document.getElementById('lightbox-next').addEventListener('click', () => {
+            currentIndex = (currentIndex < galleryImages.length - 1) ? currentIndex + 1 : 0;
+            lightboxImg.src = galleryImages[currentIndex];
+        });
+
+        // Close lightbox on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) hideLightbox();
+        });
+
+        // Swiper Init
+        new Swiper('.testimonial-swiper', {
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            autoHeight: true
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero
+        gsap.to(".gsap-hero", { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.2 });
+
+        // Scroll reveals
+        gsap.utils.toArray('.gsap-fade-up').forEach(elem => {
+            gsap.from(elem, { scrollTrigger: { trigger: elem, start: "top 80%" }, y: 50, opacity: 0, duration: 0.8, ease: "power2.out" });
+        });
+
+        gsap.utils.toArray('.gsap-fade-right').forEach(elem => {
+            gsap.from(elem, { scrollTrigger: { trigger: elem, start: "top 80%" }, x: -50, opacity: 0, duration: 0.8, ease: "power2.out" });
+        });
+
+        gsap.utils.toArray('.gsap-fade-left').forEach(elem => {
+            gsap.from(elem, { scrollTrigger: { trigger: elem, start: "top 80%" }, x: 50, opacity: 0, duration: 0.8, ease: "power2.out" });
+        });
+
+        // Number Counter Animation
+        ScrollTrigger.create({
+            trigger: "#stats-container",
+            start: "top 80%",
+            once: true,
+            onEnter: () => {
+                document.querySelectorAll('.stat-number').forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-val'));
+                    gsap.to(counter, {
+                        innerHTML: target,
+                        duration: 2,
+                        snap: { innerHTML: 1 },
+                        ease: "power1.inOut"
+                    });
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
